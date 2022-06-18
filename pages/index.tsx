@@ -8,12 +8,12 @@ import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   
-  const [users, setUsers] = useState([])
+  const [games, setGames] = useState([])
   
   const getGames = async () => {
     const url = 'https://www.gamerpower.com/api/giveaways?platform=pc'
     await axios.get(url)
-        .then(response => response.data)
+        .then(response => setGames(response.data))
         .catch(err => console.log(err))
   }
 
