@@ -21,11 +21,13 @@ const Home: NextPage = () => {
     const url = 'https://www.gamerpower.com/api/giveaways?platform=pc'
         await axios
         .get(url)    
-            .then(response => {
-             
-                
-                console.log(response)
-            })
+            .then(response => response.map(it => ({
+              title: `${it.title}`,
+              thumbnail: `${it.thumbnail}`,
+              url: `${it.open_giveaway_url}`,
+              type: `${it.type}`,
+              platforms: `${it.platforms}`
+            })))
             .catch(err => console.log(err))
       }
       console.log(getGames())
