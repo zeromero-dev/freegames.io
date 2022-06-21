@@ -10,12 +10,27 @@ const Home: NextPage = () => {
   
   const [games, setGames] = useState([])
   
+  // const getGames = async () => {
+  //   const url = 'https://www.gamerpower.com/api/giveaways?platform=pc'
+  //   await axios.get(url)
+  //       .then(response => setGames(response.data))
+  //       .catch(err => console.log(err))
+  // }
+
   const getGames = async () => {
     const url = 'https://www.gamerpower.com/api/giveaways?platform=pc'
-    await axios.get(url)
-        .then(response => setGames(response.data))
-        .catch(err => console.log(err))
-  }
+        await axios
+        .get(url)    
+            .then(response => response.map(it => ({
+              title: `${it.title}`,
+              thumbnail: `${it.thumbnail}`,
+              url: `${it.open_giveaway_url}`,
+              type: `${it.type}`,
+              platforms: `${it.platforms}`
+            })))
+            .catch(err => console.log(err))
+      }
+      console.log(getGames())
 
   useEffect(() => {
     getGames()
