@@ -12,7 +12,7 @@ export const Game = () => {
     method: 'GET',
     params: { 'sort-by': 'popularity' },
     headers: {
-      'X-RapidAPI-Key': 'efa8e056femshf6230fdf6022d20p126a25jsn829d203c1efb',
+      'X-RapidAPI-Key': '${envkey}',
       'X-RapidAPI-Host': 'gamerpower.p.rapidapi.com'
     }
   };
