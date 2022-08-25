@@ -1,10 +1,9 @@
 import React from 'react'
 import axios from "axios";
 
+import { useQuery } from '@tanstack/react-query'
 
-
-
-import { isError, useQuery } from '@tanstack/react-query'
+import GameCard from './GameCard';
 
 export const Game = () => {
 
@@ -12,7 +11,7 @@ export const Game = () => {
     method: 'GET',
     params: { 'sort-by': 'popularity' },
     headers: {
-      'X-RapidAPI-Key': 'efa8e056femshf6230fdf6022d20p126a25jsn829d203c1efb',
+      'X-RapidAPI-Key': 'efa8e056femshf6230fdf6022d20p126a25jsn829d203c1efb', //change this to env variable
       'X-RapidAPI-Host': 'gamerpower.p.rapidapi.com'
     }
   };
@@ -20,28 +19,18 @@ export const Game = () => {
   const { isLoading, error, data } = useQuery(["gameData"], () =>
     axios
       .get("https://gamerpower.p.rapidapi.com/api/giveaways", options)
-      //.get("https://www.gamerpower.com/api/giveaways?sort-by=popularity")
       .then((res) => res.data)
   );
 
   //I know it looks silly, I'll change it later
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
-  if (error) {
-    return <div>Error</div>
-  }
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error</div>
 
   return (
     <div>
-      {data.map(game => {
+      {data.map((game) => {
         return (
-          <div key={game.id}>
-            <h1>{game.name}</h1>
-            <img src={game.image} alt={game.name} />
-            <p>{game.description}</p>
-          </div>
+          <GameCard key={game.id} id={game.id} name={game.name} image={game.image} description={game.description} />
         )
       })}
     </div>
