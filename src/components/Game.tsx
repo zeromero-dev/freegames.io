@@ -23,12 +23,18 @@ export const Game = () => {
   );
 
   //I know it looks silly, I'll change it later
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return (
+    <div className="flex justify-center items-center">
+      <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+        <span className="visually-hidden"></span>
+      </div>
+    </div>
+  )
   if (error) return <div>Error</div>
 
   return (
     <div className='grid grid-cols-4 gap-2 gap-y-8 ml-20 grid-flow-dense mt-5'>
-      {data.map((game) => {
+      {data.map((game: any) => {
         return (
           <GameCard key={game.id} id={game.id} name={game.name} image={game.image} description={game.description} url={game.open_giveaway_url} />
         )
