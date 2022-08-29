@@ -4,17 +4,20 @@ type GameCardProps = {
     id: number,
     name: string,
     image: string,
-    description: string
+    description: string,
+    url: string
 }
 
-const GameCard = ({ id, name, image, description }: GameCardProps) => {
+const GameCard = ({ id, name, image, description, url }: GameCardProps) => {
     return (
         <div key={id} className='card w-96 bg-base-100 shadow-xl'>
             <h1 className='text-3xl font-bold underline'>{name}</h1>
-            <img src={image} alt={name} className='w-0' />
+            <img src={image} alt={name} className='' />
             <p>{description}</p>
             <div className="card-actions justify-end">
-                <button className="btn btn-primary">Get the game</button>
+                <button className="btn btn-primary">
+                    <a href={url}>Get the game</a>
+                </button>
             </div>
         </div>
     )

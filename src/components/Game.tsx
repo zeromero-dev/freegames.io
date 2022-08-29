@@ -27,10 +27,10 @@ export const Game = () => {
   if (error) return <div>Error</div>
 
   return (
-    <div>
+    <div className='grid grid-cols-4 gap-2 gap-y-8 ml-20 grid-flow-dense mt-5'>
       {data.map((game) => {
         return (
-          <GameCard key={game.id} id={game.id} name={game.name} image={game.image} description={game.description} />
+          <GameCard key={game.id} id={game.id} name={game.name} image={game.image} description={game.description} url={game.open_giveaway_url} />
         )
       })}
     </div>
