@@ -31,7 +31,7 @@ export const Game = () => {
       </div>
     </div>
   )
-  if (error) return <div> ERROR console.log(process.env.X_RAPIDAPI_KEY)</div>
+  if (error) return <div> ERROR</div>
 
   return (
     <div className='grid grid-cols-4 gap-2 gap-y-8 ml-20 grid-flow-dense mt-5'>
