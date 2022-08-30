@@ -32,12 +32,12 @@ export const Game = () => {
     </div>
   )
   if (error) return <div> ERROR</div>
-
+    //grid grid-cols-4 gap-2 gap-y-8 ml-20 grid-flow-dense mt-5
   return (
-    <div className='grid grid-cols-4 gap-2 gap-y-8 ml-20 grid-flow-dense mt-5'>
+    <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-2 gap-y-8 ml-10 grid-flow-dense mt-5'>
       {data.map((game: any) => {
         return (
-          <GameCard key={game.id} id={game.id} name={game.name} image={game.image} description={game.description.substring(0, 300)} url={game.open_giveaway_url} />
+          <GameCard key={game.id} id={game.id} name={game.title} image={game.image} description={game.description} url={game.open_giveaway_url} platforms={game.platforms} /> //description.substring(0, 300)
         )
       })}
     </div>
