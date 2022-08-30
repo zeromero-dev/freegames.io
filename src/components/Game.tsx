@@ -11,7 +11,11 @@ export const Game = () => {
     method: 'GET',
     params: { 'sort-by': 'popularity' },
     headers: {
-      'X-RapidAPI-Key': 'efa8e056femshf6230fdf6022d20p126a25jsn829d203c1efb', //change this to env variable
+<<<<<<< HEAD
+      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY, //change this to env variable
+=======
+      'X-RapidAPI-Key': '${envkey}',
+>>>>>>> 4f4e63c1a7b4156da6de7492767325f348dd9d76
       'X-RapidAPI-Host': 'gamerpower.p.rapidapi.com'
     }
   };
