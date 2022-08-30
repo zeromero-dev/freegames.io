@@ -12,10 +12,12 @@ const GameCard = ({ id, name, image, description, url }: GameCardProps) => {
     return (
         <div key={id} className='card w-96 bg-base-100 shadow-xl'>
             <h1 className='text-3xl font-bold underline'>{name}</h1>
-            <img src={image} alt={name} className=''/>
-            <p>{description}</p>
+            <img src={image} alt={name} className='flex w-384 h-179'/>
+            <div className='m-2 text-lg'>
+                {description}
+            </div>
             <div className="card-actions justify-end">
-                <button className="btn btn-primary">
+                <button className="btn btn-primary m-2">
                     <a href={url}>Get the game</a>
                 </button>
             </div>
