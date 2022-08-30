@@ -12,7 +12,7 @@ export const Game = () => {
     method: 'GET',
     params: { 'sort-by': 'popularity' },
     headers: {
-      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY, //the env variable is not working propely
+      'X-RapidAPI-Key': `${process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY}`, //the env variable is not working propely
       'X-RapidAPI-Host': 'gamerpower.p.rapidapi.com'
     }
   };
