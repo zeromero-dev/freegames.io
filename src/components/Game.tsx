@@ -11,7 +11,7 @@ export const Game = () => {
     method: 'GET',
     params: { 'sort-by': 'popularity' },
     headers: {
-      'X-RapidAPI-Key': 'X-RAPIDAPI-KEY', //change this to env variable
+      'X-RapidAPI-Key': `${process.env.X_RAPIDAPI_KEY}`, //change this to env variable
       'X-RapidAPI-Host': 'gamerpower.p.rapidapi.com'
     }
   };
@@ -36,7 +36,7 @@ export const Game = () => {
     <div className='grid grid-cols-4 gap-2 gap-y-8 ml-20 grid-flow-dense mt-5'>
       {data.map((game: any) => {
         return (
-          <GameCard key={game.id} id={game.id} name={game.name} image={game.image} description={game.description} url={game.open_giveaway_url} />
+          <GameCard key={game.id} id={game.id} name={game.name} image={game.image} description={game.description.substring(0, 300)} url={game.open_giveaway_url} />
         )
       })}
     </div>
