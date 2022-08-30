@@ -3,14 +3,15 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-
 import { Game } from '../src/components/Games'
+import { ScrollButton } from '../src/components/ScrollButton'
 
 const Home: NextPage = () => {
   return (
-  <Game/>
-   //<button className='btn'>Click me</button>
-   
+    <div>
+      <Game />
+      <ScrollButton />
+    </div>
   )
 }
 
