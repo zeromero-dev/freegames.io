@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from "axios";
+import Link from 'next/link';
 
 import { useQuery } from '@tanstack/react-query'
 
@@ -11,7 +12,7 @@ export const Game = () => {
     method: 'GET',
     params: { 'sort-by': 'popularity' },
     headers: {
-      'X-RapidAPI-Key': `${process.env.X_RAPIDAPI_KEY}`, //change this to env variable
+      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY, //the env variable is not working propely
       'X-RapidAPI-Host': 'gamerpower.p.rapidapi.com'
     }
   };
@@ -30,7 +31,7 @@ export const Game = () => {
       </div>
     </div>
   )
-  if (error) return <div>Error</div>
+  if (error) return <div> ERROR console.log(process.env.X_RAPIDAPI_KEY)</div>
 
   return (
     <div className='grid grid-cols-4 gap-2 gap-y-8 ml-20 grid-flow-dense mt-5'>
@@ -42,3 +43,4 @@ export const Game = () => {
     </div>
   )
 }
+
