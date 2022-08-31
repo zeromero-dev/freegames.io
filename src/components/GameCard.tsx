@@ -19,9 +19,9 @@ const GameCard = ({ id, name, image, description, url, platforms }: GameCardProp
             </div>
             <span className='ml-2 font-bold'>Platforms: {platforms} </span>
             <div className="card-actions justify-end">
-           
-                <button className="btn btn-primary m-2">
-                    <a href={url}>Get the game</a>
+
+                <button onClick={() => window.open(url)} className="btn btn-primary m-2">
+                    GET
                 </button>
             </div>
         </div>
