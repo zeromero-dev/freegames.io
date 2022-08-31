@@ -14,14 +14,14 @@ const GameCard = ({ id, name, image, description, url, platforms }: GameCardProp
         <div key={id} className='card w-96 bg-base-100 shadow-xl'>
             <img src={image} alt={name} className='flex w-384 h-179' />
             <h1 className='flex text-3xl font-bold ml-2'>{name}</h1>
-            <div className='m-2 text-lg'>
+            <div className='m-2 text-lg text-ellipsis '>
                 {description}
             </div>
-            <span className='m-0 font-bold'>Platforms: {platforms} </span>
+            <span className='ml-2 font-bold'>Platforms: {platforms} </span>
             <div className="card-actions justify-end">
-           
-                <button className="btn btn-primary m-2">
-                    <a href={url}>Get the game</a>
+
+                <button onClick={() => window.open(url)} className="btn btn-primary m-2">
+                    GET
                 </button>
             </div>
         </div>
