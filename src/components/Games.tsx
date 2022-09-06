@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { useQuery } from '@tanstack/react-query'
 
-import GameCard from './GameCard';
+import { GameCard } from './GameCard';
 
 export const Game = () => {
 
@@ -12,7 +12,7 @@ export const Game = () => {
     method: 'GET',
     params: { 'sort-by': 'popularity' },
     headers: {
-      'X-RapidAPI-Key': `${process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY}`, //the env variable is not working propely
+      'X-RapidAPI-Key': `${process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY}`,
       'X-RapidAPI-Host': 'gamerpower.p.rapidapi.com'
     }
   };
@@ -32,7 +32,6 @@ export const Game = () => {
     </div>
   )
   if (error) return <div> ERROR</div>
-    //grid grid-cols-4 gap-2 gap-y-8 ml-20 grid-flow-dense mt-5
   return (
     <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-2 gap-y-8 ml-10 grid-flow-dense mt-5'>
       {data.map((game: any) => {
