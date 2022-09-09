@@ -1,18 +1,20 @@
 import Link from 'next/link'
 
-type GameCardProps = {
-    id: number,
-    name: string,
-    image: string,
-    description: string,
-    url: string,
-    platforms: string,
+
+export type GameCardProps = {
+    id?: number,
+    name?: string,
+    image?: string,
+    description?: string,
+    url?: string,
+    platforms?: string,
 }
 
 export const GameCard = ({ id, name, image, description, url, platforms }: GameCardProps) => {
     return (
         <div key={id} className='card w-96 bg-base-100 shadow-xl'>
             <img src={image} alt={name} className='flex w-384 h-179' />
+            {/* <Image src={image} alt={name} width={384} height={179} /> */}
             <h1 className='flex text-3xl font-bold ml-2'>{name}</h1>
             <div className='m-2 text-lg line-clamp-3'>
                 {description}
