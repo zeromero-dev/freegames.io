@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const GameInfo = () => {
+export const GameDetail = () => {
   return (
     <div>Hiii </div>
   )
