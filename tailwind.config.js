@@ -5,8 +5,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+
   daisyui: {
     themes: [
+      "dark",
+      "lofi",
       {
         mytheme: {
           primary: "#f3e8ff",
@@ -22,5 +25,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("@tailwindcss/line-clamp")],
 };
