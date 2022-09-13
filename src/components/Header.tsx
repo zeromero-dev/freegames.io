@@ -27,7 +27,7 @@ export const Header = () => {
                         </li>
                         <li><div className="form-control">
                             <label className="label cursor-pointer">
-                                <span className="label-text">Change Theme {theme} </span>
+                                <span className="label-text">Change Theme </span>
                                 <input type="checkbox" className="toggle toggle-primary" onClick={() => theme === 'dark' ? setTheme('lofi') : setTheme('dark')} />
                             </label>
                         </div></li>
