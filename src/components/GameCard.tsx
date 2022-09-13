@@ -1,5 +1,5 @@
 import Link from 'next/link'
-
+import { useRouter } from 'next/router'
 
 export type GameCardProps = {
     id?: number,
@@ -11,6 +11,8 @@ export type GameCardProps = {
 }
 
 export const GameCard = ({ id, name, image, description, url, platforms }: GameCardProps) => {
+    const router = useRouter()
+
     return (
         <div key={id} className='card w-96 bg-base-100 shadow-xl'>
             <img src={image} alt={name} className='flex w-384 h-179' />
@@ -21,11 +23,12 @@ export const GameCard = ({ id, name, image, description, url, platforms }: GameC
             </div>
             <span className='ml-2 font-bold'>Platforms: {platforms} </span>
             <div className="flex gap-x-44">
-                <Link href={`/game/${id}`}>
-                    <a className="btn btn-primary m-2">
-                        MORE INFO
-                    </a>
-                </Link>
+                <button className='btn btn-primary m-2'
+                    onClick={
+                        e => router.push(`/[id]`, `/${id}`)
+                    }>
+                    MORE INFO
+                </button>
                 <button onClick={() => window.open(url)} className="btn btn-primary m-2">
                     GET
                 </button>

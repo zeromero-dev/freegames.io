@@ -5,8 +5,8 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
-// module.exports = {
-//   images: {
-//     domains: ['www.gamerpower.com'],
-//   },
-// }
+module.exports = {
+  images: {
+    domains: ['www.gamerpower.com'],
+  },
+}
