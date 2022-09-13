@@ -1,7 +1,16 @@
 import Link from 'next/link'
-import React from 'react'
+import { useEffect, useState } from 'react'
+
+import { useTheme } from 'next-themes';
+
 
 export const Header = () => {
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => setMounted(true), []);
+    if (!mounted) return null;
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -16,7 +25,12 @@ export const Header = () => {
                                 <a>New Games</a>
                             </div>
                         </li>
-                        <li><a>Portfolio</a></li>
+                        <li><div className="form-control">
+                            <label className="label cursor-pointer">
+                                <span className="label-text">Change Theme {theme} </span>
+                                <input type="checkbox" className="toggle toggle-primary" onClick={() => theme === 'dark' ? setTheme('lofi') : setTheme('dark')} />
+                            </label>
+                        </div></li>
                         <li><a href="https://github.com/zeromero-dev/freegames.io">About</a></li>
                     </ul>
                 </div>
