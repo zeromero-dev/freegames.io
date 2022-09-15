@@ -12,15 +12,15 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
   return (
     <ThemeProvider>
-      {/* <SessionProvider session={session} basePath="./auth.tsx"> */}
-        <QueryClientProvider client={queryClient}>
+      <SessionProvider session={session} basePath="./auth.tsx">
+        <QueryClientProvider client={queryClient} >
           <Hydrate state={pageProps.dehydratedState}>
             <Component {...pageProps} />
             <ReactQueryDevtools initialIsOpen={true} />
-            {/* initialIsOpen is set to false===open up, true===for prod */}
+            {/* initialIsOpen is set to false===open up, true===for prod contextSharing={true}*/}
           </Hydrate>
         </QueryClientProvider>
-      {/* </SessionProvider> */}
+      </SessionProvider>
     </ThemeProvider>
   )
 }

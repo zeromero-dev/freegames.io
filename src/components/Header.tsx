@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-
+import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 
 
 export const Header = () => {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
-
+    const router = useRouter()  
     useEffect(() => setMounted(true), []);
     if (!mounted) return null;
 
@@ -22,7 +22,9 @@ export const Header = () => {
                         <li>
                             <div className='indicator'>
                                 <span className="indicator-item badge badge-primary top-1">new</span>
-                                <a>New Games</a>
+                                <button onClick={(e) => router.push('/new')}>
+                                    New Games
+                                </button>
                             </div>
                         </li>
                         <li><div className="form-control">

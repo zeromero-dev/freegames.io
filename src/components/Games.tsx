@@ -1,18 +1,21 @@
-import React from 'react'
 import axios from "axios";
 import Link from 'next/link';
 
 import { useQuery, dehydrate, QueryClient } from '@tanstack/react-query'
 
 import { GameCard } from './GameCard';
-import { options } from './fetchers/options'
+import { options_popularity } from '../../src/components/fetchers/options'
+import Loader from "./Loader";
+
 
 import { GameCardProps } from './GameCard';
 
 const fetchGames = async () => {
-  const res = await axios.get("https://gamerpower.p.rapidapi.com/api/giveaways", options)
+  const res = await axios.get("https://gamerpower.p.rapidapi.com/api/giveaways", options_popularity)
   return res.data
 }
+
+
 // The data that comes to server as "undefined" for some reason.
 // Needs fixing
 // export async function getServerSideProps() {
@@ -30,12 +33,7 @@ export const Game = () => {
 
   const { data, error, isLoading } = useQuery(["gameData"], fetchGames)
 
-  if (isLoading) return (
-    <div className="flex justify-center items-center">
-      <div className="w-40 h-40 border-t-4 border-b-4 border-green-900 rounded-full animate-spin">
-      </div>
-    </div>
-  )
+  if (isLoading) return (<Loader/>)
 
   error ? <div>Error</div> : null
 
