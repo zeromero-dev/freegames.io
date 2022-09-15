@@ -4,6 +4,7 @@ import Image from "next/image"
 import { Header } from "./Header"
 
 type Game = {
+    key: number,
     id: string,
     name: string,
     image: string,
@@ -16,7 +17,7 @@ type Game = {
 }
 
 
-const Game = ({ name, image, description, id, url, platforms, instructions, status, type }: Game) => {
+const GameDetails = ({ name, image, description, id, url, platforms, instructions, status, type }: Game) => {
   return (
     <div>
         <Header />
@@ -39,4 +40,4 @@ const Game = ({ name, image, description, id, url, platforms, instructions, stat
   )
 }
 
-export default Game
+export default GameDetails
