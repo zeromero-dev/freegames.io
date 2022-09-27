@@ -13,11 +13,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <ThemeProvider>
       <SessionProvider session={session} basePath="./auth.tsx">
-        <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient} >
           <Hydrate state={pageProps.dehydratedState}>
             <Component {...pageProps} />
             <ReactQueryDevtools initialIsOpen={false} />
-            {/* initialIsOpen is set to false===open up, true===for prod */}
+            {/* initialIsOpen is set to false===open up, true===for prod contextSharing={true}*/}
           </Hydrate>
         </QueryClientProvider>
       </SessionProvider>

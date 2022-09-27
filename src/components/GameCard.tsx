@@ -25,7 +25,7 @@ export const GameCard = ({ id, name, image, description, url, platforms }: GameC
             <div className="flex gap-x-44">
                 <button className='btn btn-primary m-2'
                     onClick={
-                        e => router.push(`/[id]`, `/${id}`)
+                        e => router.push(`/games/[id]`, `/games/${id}`)
                     }>
                     MORE INFO
                 </button>
