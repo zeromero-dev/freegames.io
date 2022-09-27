@@ -25,7 +25,7 @@ const GameDetails = ({ name, image, description, id, url, platforms, instruction
             <div className="hero">
                 <div className="hero-content flex-col ">
                     <div className="flex fler-row gap-4">
-                        <ReactPlayer url="https://www.youtube.com/watch?v=c0i88t0Kacs" />
+                        {/* <ReactPlayer url="https://www.youtube.com/watch?v=c0i88t0Kacs" /> */}
                         <Image src={image} alt={name} width={600} height={300} />
                     </div>
                     <div>
