@@ -38,7 +38,7 @@ export const Game = () => {
   error ? <div>Error</div> : null
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-2 gap-y-8 ml-10 grid-flow-dense mt-5'>
+    <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-2 gap-y-8 lg:ml-10 sm:ml-4 mt-5 grid-flow-dense'>
       {data.map((game: any) => {
         return (
           <GameCard key={game.id} id={game.id} name={game.title} image={game.image} description={game.description} url={game.open_giveaway_url} platforms={game.platforms} />
