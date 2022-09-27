@@ -38,23 +38,6 @@ const GameDetails = ({ name, image, description, id, url, platforms, instruction
                     </div>
                 </div>
             </div>
-            {/* <div className="m-6">
-                <div className='flex flex-row ml-12 gap-y-3 gap-x-96'>
-                    <ReactPlayer url="https://www.youtube.com/watch?v=c0i88t0Kacs" />
-
-                </div>
-                <div className="flex flex-col m-4">
-                    <p className="flex flex-auto font-bold text-xl">{name}</p>
-                    <p className='flex flex-auto font-bold text-xl'>{description}</p>
-                    <p className='flex text-lg gap-x-2'>Instruction:{instructions}</p>
-                    <p className='flex text-lg gap-x-2'>Status:{status}</p>
-                    <p className='flex text-lg gap-x-2'>Game:{type}</p>
-                    <p className='flex text-lg gap-x-2'><span className="font-bold">Platforms:</span>{platforms}</p>
-                    <button onClick={() => window.open(url)} className="btn btn-primary m-2">
-                        GET
-                    </button>
-                </div>
-            </div> */}
         </div>
 
     )
