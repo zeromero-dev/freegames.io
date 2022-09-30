@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 
-
 export const ScrollButton = () => {
 
     const [isVisible, setIsVisible] = useState(false);
@@ -12,7 +11,6 @@ export const ScrollButton = () => {
     useEffect(() => {
         window.addEventListener('scroll', () => window.scrollY > 1000 ? setIsVisible(true) : setIsVisible(false))
     }, [])
-
 
     return (
         <div className='fixed bottom-2 right-2'>

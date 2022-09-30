@@ -4,14 +4,14 @@ import Link from 'next/link';
 import { useQuery, dehydrate, QueryClient } from '@tanstack/react-query'
 
 import { GameCard } from './GameCard';
-import { options_popularity } from '../../src/components/fetchers/options'
+import { options_popularity, options_date } from '../../src/components/fetchers/options'
 import Loader from "./Loader";
 
 
 import { GameCardProps } from './GameCard';
 
-const fetchGames = async () => {
-  const res = await axios.get("https://gamerpower.p.rapidapi.com/api/giveaways", options_popularity)
+const fetchGames = async (options: Object) => {
+  const res = await axios.get("https://gamerpower.p.rapidapi.com/api/giveaways", options)
   return res.data
 }
 
@@ -31,7 +31,7 @@ const fetchGames = async () => {
 
 export const Game = () => {
 
-  const { data, error, isLoading } = useQuery(["gameData"], fetchGames)
+  const { data, error, isLoading } = useQuery(["gameData"], (async () => await fetchGames(options_popularity)))
 
   if (isLoading) return (<Loader/>)
 
