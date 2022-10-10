@@ -30,7 +30,7 @@ export const Header = () => {
                         <li><div className="form-control">
                             <label className="label cursor-pointer">
                                 <span className="label-text">Change Theme </span>
-                                <input type="checkbox" className="toggle toggle-primary" onClick={() => theme === 'dark' ? setTheme('lofi') : setTheme('dark')} />
+                                <input type="checkbox" className="button primaru" onClick={() => theme === 'dark' ? setTheme('lofi') : setTheme('dark')} />
                             </label>
                         </div></li>
                         <li><a href="https://github.com/zeromero-dev/freegames.io">About</a></li>
