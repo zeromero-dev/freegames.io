@@ -1,15 +1,17 @@
+import { AnimatedLogo } from './Logo'
+import { Search } from './Search';
+
 import Link from 'next/link'
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
+import { DropDownMenu } from './DropDownMenu';
 
 
 export const Header = () => {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
-    const checkboxRef = useRef();
-    const router = useRouter()  
-
+    // #Mounts the theme 
     useEffect(() => setMounted(true), []);
     if (!mounted) return null;
 
@@ -17,42 +19,18 @@ export const Header = () => {
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
-                <div className="dropdown">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-                    </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-44">
-                        <li>
-                            {/* <div className='indicator'>
-                                <span className="indicator-item badge badge-primary top-1">new</span>
-                                <button onClick={(e) => router.push('/new')}>
-                                    New Games
-                                </button>
-                            </div> */}
-                        </li>
-                        <li><div className="form-control">
-                            <label className="label cursor-pointer">
-                                <span className="label-text">Change Theme </span>
-                                <input type="checkbox" defaultChecked={false} className="toggle toggle-primary" onClick={() => theme === 'dark' ? setTheme('lofi'): setTheme('dark')} />
-                            </label>
-                        </div></li>
-                        <li><a href="https://github.com/zeromero-dev/freegames.io">About</a></li>
-                    </ul>
-                </div>
+                <DropDownMenu theme={theme} setTheme={setTheme} />
             </div>
             <div className="navbar-center">
                 <Link href='/'>
-                    <a className="btn btn-ghost normal-case text-xl">freegames.io</a>
+                    <a className="btn btn-ghost normal-case text-xl">
+                        <AnimatedLogo />
+                    </a>
                 </Link>
             </div>
             <div className="navbar-end">
                 <div className="form-control">
-                    <div className="input-group">
-                        <input type="text" placeholder="Search..." className="input input-bordered" onChange={e => e.target.value}/>
-                        <button className="btn btn-square">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                        </button>
-                    </div>
+                    <Search />
                 </div>
                 <button className="btn btn-ghost btn-circle">
                     {/* <div className="indicator">
