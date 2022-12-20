@@ -35,7 +35,8 @@ export const Game = () => {
   if (isLoading) return (<Loader />)
   error ? <div>Error</div> : null
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-2 gap-y-8 lg:ml-10 sm:ml-4 mt-5 grid-flow-dense'>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 gap-y-8 lg:ml-10 sm:ml-4 mt-5 grid-flow-dense'>
+    {/* <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-2 gap-y-8 lg:ml-10 sm:ml-4 mt-5 grid-flow-dense'> */}
       {data.map((game: any) => {
         return (
           <GameCard key={game.id} id={game.id} name={game.title} image={game.image} description={game.description} url={game.open_giveaway_url} platforms={game.platforms} date={game.published_date} />

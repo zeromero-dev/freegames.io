@@ -17,11 +17,13 @@ export const GameCard = ({ id, name, image, description, url, platforms, date }:
         <div key={id} className='card w-96 bg-base-100 shadow-xl'>
             <img src={image} alt={name} className='flex w-384 h-179' />
             <h1 className='flex text-3xl font-bold ml-2'>{name}</h1>
-            {checkIfNew(date) === true ? <div className="badge badge-secondary">NEW</div>: null}
+            {checkIfNew(date) === true ? <div className="badge badge-secondary ml-2 font-bold">NEW</div> : null}
             <div className='m-2 text-lg line-clamp-3'>
                 {description}
             </div>
-            <span className='ml-2 font-bold'>Platforms: {platforms} </span>
+            <span className='ml-2 font-bold'>Platforms:
+                <span className='ml-1 text-accent'>{platforms}</span>
+            </span>
             <div className="flex gap-x-44">
                 <button className='btn btn-primary m-2'
                     onClick={
