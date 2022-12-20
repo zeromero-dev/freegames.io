@@ -17,7 +17,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
           <Hydrate state={pageProps.dehydratedState}>
             <Component {...pageProps} />
             <ReactQueryDevtools initialIsOpen={false} />
+<<<<<<< HEAD
             {/* {test in "start"} */}
+=======
+            {/* initialIsOpen is set to false===open up, true===for prod contextSharing={true}*/}
+>>>>>>> master
           </Hydrate>
         </QueryClientProvider>
       </SessionProvider>

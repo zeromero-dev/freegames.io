@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { checkIfNew } from '../utils/checkIfNew'
+=======
+import Link from 'next/link'
+>>>>>>> master
 import { useRouter } from 'next/router'
 
 export type GameCardProps = {
@@ -8,6 +12,7 @@ export type GameCardProps = {
     description?: string,
     url?: string,
     platforms?: string,
+<<<<<<< HEAD
     date: string
 }
 
@@ -18,6 +23,18 @@ export const GameCard = ({ id, name, image, description, url, platforms, date }:
             <img src={image} alt={name} className='flex w-384 h-179' />
             <h1 className='flex text-3xl font-bold ml-2'>{name}</h1>
             {checkIfNew(date) === true ? <div className="badge badge-secondary">NEW</div>: null}
+=======
+}
+
+export const GameCard = ({ id, name, image, description, url, platforms }: GameCardProps) => {
+    const router = useRouter()
+
+    return (
+        <div key={id} className='card w-96 bg-base-100 shadow-xl'>
+            <img src={image} alt={name} className='flex w-384 h-179' />
+            {/* <Image src={image} alt={name} width={384} height={179} /> */}
+            <h1 className='flex text-3xl font-bold ml-2'>{name}</h1>
+>>>>>>> master
             <div className='m-2 text-lg line-clamp-3'>
                 {description}
             </div>
