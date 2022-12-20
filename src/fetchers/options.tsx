@@ -7,7 +7,7 @@ export const options_popularity = {
     }
   };
 
-  export const options_id = (id:string) => {
+  export const options_id = (id: string) => {
     return {
       method: 'GET',
       params: { id: id },

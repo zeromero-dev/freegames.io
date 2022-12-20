@@ -13,3 +13,19 @@ body, html{
   /* background-color: #313846; */
 }
 
+.dot-loader {
+  animation: dot-loader-animation 1.5s linear infinite;
+}
+
+.dot-loader-dot {
+  animation: dot-loader-animation 1.5s linear infinite;
+}
+
+@keyframes dot-loader-animation {
+  0%, 100% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.5);
+  }
+}
