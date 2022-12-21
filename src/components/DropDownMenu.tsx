@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { useRouter } from "next/router";
 type ThemeProps = {
     theme: string | undefined,
     setTheme: (theme: string) => void,
@@ -8,7 +8,7 @@ type ThemeProps = {
 
 export const DropDownMenu = ({ theme, setTheme }: ThemeProps) => {
     const [isChecked, setIsChecked] = useState(false);
-
+    const router = useRouter();
     useEffect(() => {
         const data = window.localStorage.getItem('isChecked');
         if (data !== null) setIsChecked(JSON.parse(data));
@@ -31,8 +31,33 @@ export const DropDownMenu = ({ theme, setTheme }: ThemeProps) => {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
             </label>
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-28">
+                {/* <li className="menu">
+                    Sort by:
+                    <div className="form-control">
+                        <select className="select select-bordered w-full max-w-xs">
+                            <option>New</option>
+                            <option>Popularity</option>
+                            {/* <option>Rating</option> */}
+                        {/* </select>
+                    </div> // weerdl things
+                </li> */} 
+                <li>
+                    <button className="font-bold ml-3" onClick={
+                        e => router.push(`/`, `/`)
+                    }>
+                        Home
+                    </button>
+                </li>
+                <li>
+                    <button className="font-bold" onClick={
+                        e => router.push(`/games/new`, `/games/new`)
+                    }>
+                        New Games
+                    </button>
+                </li>
                 <li>
                     <div className="form-control ">
+
                         <label className="label cursor-pointer">
                             <label className="swap swap-rotate">
                                 <input type="checkbox" checked={isChecked} readOnly onClick={handleThemeChange} />
@@ -43,7 +68,7 @@ export const DropDownMenu = ({ theme, setTheme }: ThemeProps) => {
                     </div>
                 </li>
                 <li className="text bold">
-                    <a href="https://github.com/zeromero-dev/freegames.io">About</a>
+                    <a href="https://github.com/zeromero-dev/freegames.io" className="font-bold ml-3">About</a>
                 </li>
             </ul>
         </div>

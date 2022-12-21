@@ -27,3 +27,12 @@ export const options_popularity = {
       'X-RapidAPI-Host': 'gamerpower.p.rapidapi.com'
     }
   };
+
+  export const options_new = {
+    method: 'GET',
+    params: { 'sort-by': 'new' },
+    headers: {
+      'X-RapidAPI-Key': `${process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY}`,
+      'X-RapidAPI-Host': 'gamerpower.p.rapidapi.com'
+    }
+  };
