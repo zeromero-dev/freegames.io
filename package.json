@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test": "jest",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -27,6 +28,7 @@
     "@types/react-dom": "18.0.6",
     "@types/react-query": "^1.2.9",
     "autoprefixer": "^10.4.8",
+    "babel-jest": "^29.3.1",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
     "postcss": "^8.4.16",
