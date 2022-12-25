@@ -7,7 +7,7 @@ import { options_id } from '../../src/fetchers/options'
 import GameDetails from '../../src/components/GameDetailsPage'
 
 // #Fetches current game data
-const fetchGame = async (id: string) => {
+const fetchGameID = async (id: string) => {
     const res = await axios.get(`https://gamerpower.p.rapidapi.com/api/giveaway`, options_id(id))
     return await res.data
 }
@@ -16,7 +16,7 @@ const GameInfo = () => {
     const router = useRouter()
     const gameID = typeof router.query?.id === "string" ? router.query.id : "";
 
-    const { isSuccess, data: game, isLoading, isError } = useQuery(["getGame", gameID], () => fetchGame(gameID));
+    const { isSuccess, data: game, isLoading, isError } = useQuery(["getGame", gameID], () => fetchGameID(gameID));
 
     if (isError) return <div>Error</div>
     if (isLoading) return <Loader />
