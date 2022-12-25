@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { checkIfNew } from '../utils/checkIfNew'
 import { useRouter } from 'next/router'
 

@@ -8,7 +8,7 @@ export const Search = () => {
     const handleChange = (event: React.FormEvent) => {
         const target = event.target as HTMLInputElement;
         setSearch(target.value);
-      }
+    }
 
     //   const [data, isError, isSuccess] = useQuery(["search", search], );
 
