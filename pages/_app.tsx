@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
   return (
     <ThemeProvider>
-      <SessionProvider session={session} basePath="./auth.tsx">
+      {/* <SessionProvider session={session} basePath="./auth.tsx"> */}
         <QueryClientProvider client={queryClient} >
           <Hydrate state={pageProps.dehydratedState}>
             <Component {...pageProps} />
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             {/* {test in "start"} */}
           </Hydrate>
         </QueryClientProvider>
-      </SessionProvider>
+      {/* </SessionProvider> */}
     </ThemeProvider>
   )
 }

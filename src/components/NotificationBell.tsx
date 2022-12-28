@@ -5,7 +5,7 @@ import { options_new } from "../fetchers/options";
 import { useRouter } from "next/router";
 import { checkIfToday } from "../utils/checkIfToday";
 
-type NotificationBellProps = {
+export type NotificationBellProps = {
   title: string;
   description: string;
   image: string;
@@ -16,17 +16,38 @@ type NotificationBellProps = {
 export const NotificationBell = () => {
   const router = useRouter();
 
-  const { isSuccess, data, isLoading, isError } = useQuery(["notification"], () => fetchGames(options_new), {
+  const { data, isLoading, isError } = useQuery(["notification"], () => fetchGames(options_new), {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
     retry: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
-  // if (isLoading) return <div>Loading</div>
+
+  (async () => {
+    const showNotification = () => {
+      const notification = new Notification('FreeGames.io', {
+        body: 'New games are available! Check them out now!',
+        icon: './img/js.png'
+      });
+      Notification.requestPermission();
+
+      setTimeout(notification.close.bind(notification));
+      //on click redierects
+      notification.addEventListener('click', () => {
+        window.open('https://freegames-io.vercel.app/games/new', '_blank');
+      });
+    };
+    if (data?.length > 0 && checkIfToday(data[0].published_date) === true) {
+      setTimeout(showNotification, 1000 * 60 * 60 * 24);
+    }
+  })();
+
+
+
 
   return (
-    <button className="btn btn-ghost btn-circle z-29">
+    <div className="btn btn-ghost btn-circle z-29">
       <div className="flex dropdown dropdown-bottom dropdown-end">
         <label tabIndex={0} className="indicator">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,12 +75,11 @@ export const NotificationBell = () => {
                     </button>
                   </div>
                 </li>
-
               )
             })}
         </ul>
       </div>
-    </button>
+    </div>
   )
 }
 {/* <span className="badge badge-xs badge-primary indicator-item"></span> */ }
