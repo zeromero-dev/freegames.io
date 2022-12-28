@@ -24,23 +24,27 @@ export const NotificationBell = () => {
     staleTime: 1000 * 60 * 60 * 24,
   });
 
-  Notification.requestPermission();
-  const showNotification = () => {
-    const notification = new Notification('FreeGames.io', {
-      body: 'New games are available! Check them out now!',
-      icon: './img/js.png'
-    });
+  (async () => {
+    Notification.requestPermission();
+    const showNotification = () => {
+      const notification = new Notification('FreeGames.io', {
+        body: 'New games are available! Check them out now!',
+        icon: './img/js.png'
+      });
+  
+      setTimeout(notification.close.bind(notification), (1000 * 60 * 60 * 24));
+      //on click redierects
+      notification.addEventListener('click', () => {
+        window.open('https://freegames-io.vercel.app/games/new', '_blank');
+      });
+    };
+    if (data?.length > 0 && checkIfToday(data[0].published_date) === true) {
+      setTimeout(showNotification, 1000 * 60 * 60 * 24);
+    }
+  })();
+  
 
-    setTimeout(notification.close.bind(notification), 1000 * 60 * 60 * 24);
-    //on click redierects
-    notification.addEventListener('click', () => {
-      window.open('https://freegames-io.vercel.app/games/new', '_blank');
-    });
-  };
-
-  if (data?.length > 0 && checkIfToday(data[0].published_date) === true) {
-    showNotification();
-  }
+  
 
   return (
     <button className="btn btn-ghost btn-circle z-29">
@@ -71,7 +75,6 @@ export const NotificationBell = () => {
                     </button>
                   </div>
                 </li>
-
               )
             })}
         </ul>
