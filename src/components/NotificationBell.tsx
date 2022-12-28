@@ -5,7 +5,7 @@ import { options_new } from "../fetchers/options";
 import { useRouter } from "next/router";
 import { checkIfToday } from "../utils/checkIfToday";
 
-type NotificationBellProps = {
+export type NotificationBellProps = {
   title: string;
   description: string;
   image: string;
@@ -25,14 +25,14 @@ export const NotificationBell = () => {
   });
 
   (async () => {
-    Notification.requestPermission();
     const showNotification = () => {
       const notification = new Notification('FreeGames.io', {
         body: 'New games are available! Check them out now!',
         icon: './img/js.png'
       });
-  
-      setTimeout(notification.close.bind(notification), (1000 * 60 * 60 * 24));
+      Notification.requestPermission();
+
+      setTimeout(notification.close.bind(notification));
       //on click redierects
       notification.addEventListener('click', () => {
         window.open('https://freegames-io.vercel.app/games/new', '_blank');
@@ -42,9 +42,9 @@ export const NotificationBell = () => {
       setTimeout(showNotification, 1000 * 60 * 60 * 24);
     }
   })();
-  
 
-  
+
+
 
   return (
     <button className="btn btn-ghost btn-circle z-29">
