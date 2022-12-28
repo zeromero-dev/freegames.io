@@ -7,17 +7,15 @@ export const Search = () => {
     const [search, setSearch] = useState<string>("");
     const router =  useRouter();
     console.log(search)
-
+    // @ts-expect-error (I have no clue why this is happening, need to define "search" as a string maybe?)
     const { data, error, isLoading } = useQuery(["gameData"], search, (async () => await fetchGames(options_popularity)))
-    const searchData = data?.filter((game: any) => game.title.toLowerCase().includes(search.toLowerCase()))
 
+    const searchData = Array.isArray(data) ? data.filter((game: any) => game.title.toLowerCase().includes(search.toLowerCase())) : []
     console.log(searchData)
     const handleChange = (event: React.FormEvent) => {
         const target = event.target as HTMLInputElement;
         setSearch(target.value);
     }
-
-    //   const [data, isError, isSuccess] = useQuery(["search", search], );
 
     return (
         <div className="input-group">
