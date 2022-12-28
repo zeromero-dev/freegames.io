@@ -31,14 +31,14 @@ export const NotificationBell = () => {
       icon: './img/js.png'
     });
 
-    setTimeout(notification.close.bind(notification), 5000);
+    setTimeout(notification.close.bind(notification), 1000 * 60 * 60 * 24);
     //on click redierects
     notification.addEventListener('click', () => {
       window.open('https://freegames-io.vercel.app/games/new', '_blank');
     });
   };
 
-  if(data?.length > 0 && checkIfToday(data[0].published_date) === true) {
+  if (data?.length > 0 && checkIfToday(data[0].published_date) === true) {
     showNotification();
   }
 
@@ -53,7 +53,7 @@ export const NotificationBell = () => {
         <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-80 relative">
           {
             data?.map((item: NotificationBellProps) => {
-              if (checkIfToday(item.published_date) === false) return <div key={item.id}>No new games yet</div>;
+              if (checkIfToday(item.published_date) === false) return null;
               return (
                 <li key={item.id} className="flex">
                   <div className="container for everything">
