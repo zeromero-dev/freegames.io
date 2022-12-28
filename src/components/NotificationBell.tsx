@@ -16,14 +16,35 @@ type NotificationBellProps = {
 export const NotificationBell = () => {
   const router = useRouter();
 
-  const { isSuccess, data, isLoading, isError } = useQuery(["notification"], () => fetchGames(options_new), {
+  const { data, isLoading, isError } = useQuery(["notification"], () => fetchGames(options_new), {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
     retry: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
-  // if (isLoading) return <div>Loading</div>
+
+  (async () => {
+    Notification.requestPermission();
+    const showNotification = () => {
+      const notification = new Notification('FreeGames.io', {
+        body: 'New games are available! Check them out now!',
+        icon: './img/js.png'
+      });
+  
+      setTimeout(notification.close.bind(notification), (1000 * 60 * 60 * 24));
+      //on click redierects
+      notification.addEventListener('click', () => {
+        window.open('https://freegames-io.vercel.app/games/new', '_blank');
+      });
+    };
+    if (data?.length > 0 && checkIfToday(data[0].published_date) === true) {
+      setTimeout(showNotification, 1000 * 60 * 60 * 24);
+    }
+  })();
+  
+
+  
 
   return (
     <button className="btn btn-ghost btn-circle z-29">
@@ -54,7 +75,6 @@ export const NotificationBell = () => {
                     </button>
                   </div>
                 </li>
-
               )
             })}
         </ul>
