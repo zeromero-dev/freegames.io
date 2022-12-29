@@ -15,7 +15,6 @@ export const DropDownMenu = ({ theme, setTheme }: ThemeProps) => {
     }, []);
 
     useEffect(() => {
-        // console.log('isChecked', isChecked)
         window.localStorage.setItem('isChecked', JSON.stringify(isChecked));
     }, [isChecked]);
 

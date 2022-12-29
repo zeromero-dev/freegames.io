@@ -4,14 +4,19 @@ import { fetchNotifcationGames } from "../Games";
 import { options_new } from "../fetchers/options";
 import { useRouter } from "next/router";
 import { checkIfToday } from "../utils/checkIfToday";
+// import { GameCard } from "./GameCard";
+import z from "zod";
 
-export type NotificationBellProps = {
-  title: string;
-  description: string;
-  image: string;
-  id: string;
-  published_date: string;
-}
+const notificationProp = z.object({
+  title: z.string(),
+  description: z.string(),
+  image: z.string(),
+  id: z.string(),
+  published_date: z.string(),
+});
+
+export type NotificationProp = z.infer<typeof notificationProp>;
+
 
 export const NotificationBell = () => {
   const router = useRouter();
@@ -43,9 +48,6 @@ export const NotificationBell = () => {
     }
   })();
 
-
-
-
   return (
     <div className="btn btn-ghost btn-circle z-29">
       <div className="flex dropdown dropdown-bottom dropdown-end">
@@ -56,7 +58,7 @@ export const NotificationBell = () => {
         </label>
         <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-80 relative">
           {
-            data?.map((item: NotificationBellProps) => {
+            data?.map((item: NotificationProp) => {
               if (checkIfToday(item.published_date) === false) return null;
               return (
                 <li key={item.id} className="flex">
