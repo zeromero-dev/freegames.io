@@ -17,10 +17,9 @@ const notificationProp = z.object({
 
 export type NotificationProp = z.infer<typeof notificationProp>;
 
-
 export const NotificationBell = () => {
   const router = useRouter();
-
+  
   const { data, isLoading, isError } = useQuery(["notification"], () => fetchGames(options_new), {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -29,24 +28,26 @@ export const NotificationBell = () => {
     staleTime: 1000 * 60 * 60 * 24,
   });
 
-  (async () => {
-    const showNotification = () => {
-      const notification = new Notification('FreeGames.io', {
-        body: 'New games are available! Check them out now!',
-        icon: './img/js.png'
-      });
-      Notification.requestPermission();
+  // (async () => {
+  //   const showNotification = () => {
+  //     const notification = new Notification('FreeGames.io', {
+  //       body: 'New games are available! Check them out now!',
+  //       icon: './img/js.png'
+  //     });
+  //     Notification.requestPermission();
 
-      setTimeout(notification.close.bind(notification));
-      //on click redierects
-      notification.addEventListener('click', () => {
-        window.open('https://freegames-io.vercel.app/games/new', '_blank');
-      });
-    };
-    if (data?.length > 0 && checkIfToday(data[0].published_date) === true) {
-      setTimeout(showNotification, 1000 * 60 * 60 * 24);
-    }
-  })();
+  //     setTimeout(notification.close.bind(notification));
+  //     //on click redierects
+  //     notification.addEventListener('click', () => {
+  //       window.open('https://freegames-io.vercel.app/games/new', '_blank');
+  //     });
+  //   };
+  //   if (data?.length > 0 && checkIfToday(data[0].published_date) === true) {
+  //     setTimeout(showNotification, 1000 * 60 * 60 * 24);
+  //   }
+  // })();
+  const filteredData = data?.filter((item: NotificationProp) => checkIfToday(item.published_date) === true);
+  console.log(filteredData)
 
   return (
     <div className="btn btn-ghost btn-circle z-29">
@@ -57,9 +58,9 @@ export const NotificationBell = () => {
           </svg>
         </label>
         <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-80 relative">
-          {
-            data?.map((item: NotificationProp) => {
-              if (checkIfToday(item.published_date) === false) return null;
+          {filteredData?.length === 0
+            ? <div>No new games yet, come later!</div>
+            : filteredData?.map((item: NotificationProp) => {
               return (
                 <li key={item.id} className="flex">
                   <div className="container for everything">
