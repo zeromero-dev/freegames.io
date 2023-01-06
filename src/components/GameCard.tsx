@@ -1,24 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 import { checkIfNew } from '../utils/checkIfNew'
 import { useRouter } from 'next/router'
+import z from 'zod'
 
-export type GameCardProps = {
-    id?: number,
-    name?: string,
-    image?: string,
-    description?: string,
-    url?: string,
-    platforms?: string,
-    date: string
-}
+const gameCard = z.object({
+    id: z.string(),
+    title: z.string(),
+    image: z.string(),
+    description: z.string(),
+    url: z.string(),
+    platforms: z.string(),
+    published_date: z.string().optional()
+})
 
-export const GameCard = ({ id, name, image, description, url, platforms, date }: GameCardProps) => {
+export type GameCard = z.infer<typeof gameCard>
+
+
+export const GameCard = ({ id, title, image, description, url, platforms, published_date }: GameCard) => {
     const router = useRouter()
     return (
         <div key={id} className='card w-96 bg-base-100 shadow-xl'>
-            <img src={image} alt={name} className='flex w-384 h-179' />
-            <h1 className='flex text-3xl font-bold ml-2'>{name}</h1>
-            {checkIfNew(date) === true ? <div className="badge badge-secondary ml-2 font-bold">NEW</div> : null}
+            <img src={image} alt={title} className='flex w-384 h-179' />
+            <h1 className='flex text-3xl font-bold ml-2'>{title}</h1>
+            {checkIfNew(published_date!) === true ? <div className="badge badge-secondary ml-2 font-bold">NEW</div> : null}
             <div className='m-2 text-lg line-clamp-3'>
                 {description}
             </div>

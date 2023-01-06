@@ -21,12 +21,12 @@ const NewGames = () => {
                 return (
                         <GameCard
                             key={game.id}
-                            id={game.id} name={game.title}
+                            id={game.id} title={game.title}
                             image={game.image}
                             description={game.description}
                             url={game.open_giveaway_url}
                             platforms={game.platforms}
-                            date={game.published_date} />
+                            published_date={game.published_date} />
                 )
             })}
         </div>

@@ -1,3 +1,4 @@
+
 export const AnimatedLogo = () => {
     return (
         <div className="flex items-center justify-center z-100">
