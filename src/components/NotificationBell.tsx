@@ -4,14 +4,18 @@ import { fetchNotifcationGames } from "../Games";
 import { options_new } from "../fetchers/options";
 import { useRouter } from "next/router";
 import { checkIfToday } from "../utils/checkIfToday";
+// import { GameCard } from "./GameCard";
+import z from "zod";
 
-export type NotificationBellProps = {
-  title: string;
-  description: string;
-  image: string;
-  id: string;
-  published_date: string;
-}
+const notificationProp = z.object({
+  title: z.string(),
+  description: z.string(),
+  image: z.string(),
+  id: z.string(),
+  published_date: z.string(),
+});
+
+export type NotificationProp = z.infer<typeof notificationProp>;
 
 export const NotificationBell = () => {
   const router = useRouter();
@@ -23,29 +27,8 @@ export const NotificationBell = () => {
     retry: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
-
-  (async () => {
-    const showNotification = () => {
-      const notification = new Notification('FreeGames.io', {
-        body: 'New games are available! Check them out now!',
-        icon: './img/js.png'
-      });
-      Notification.requestPermission();
-
-      setTimeout(notification.close.bind(notification));
-      //on click redierects
-      notification.addEventListener('click', () => {
-        window.open('https://freegames-io.vercel.app/games/new', '_blank');
-      });
-    };
-    if (data?.length > 0 && checkIfToday(data[0].published_date) === true) {
-      setTimeout(showNotification, 1000 * 60 * 60 * 24);
-    }
-  })();
-
-
-
-
+  
+  const filteredData = data?.filter((item: NotificationProp) => checkIfToday(item.published_date) === true);
   return (
     <div className="btn btn-ghost btn-circle z-29">
       <div className="flex dropdown dropdown-bottom dropdown-end">
@@ -55,9 +38,9 @@ export const NotificationBell = () => {
           </svg>
         </label>
         <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-80 relative">
-          {
-            data?.map((item: NotificationBellProps) => {
-              if (checkIfToday(item.published_date) === false) return null;
+          {filteredData?.length === 0
+            ? <div>No new games yet, come back later!</div>
+            : filteredData?.map((item: NotificationProp) => {
               return (
                 <li key={item.id} className="flex">
                   <div className="container for everything">

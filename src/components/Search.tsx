@@ -4,17 +4,17 @@ import { fetchGames } from "../Games"
 import { options_popularity } from "../fetchers/options";
 import { useRouter } from "next/router";
 
-import { NotificationBellProps } from "./NotificationBell";
+import { NotificationProp } from "./NotificationBell";
 
 export const Search = () => {
     const [search, setSearch] = useState<string>("");
     const router = useRouter();
-    // console.log(search)
+
     // @ts-expect-error (I have no clue why this is happening, need to define "search" as a string maybe?)
     const { data, error, isLoading } = useQuery(["gameData"], search, (async () => await fetchGames(options_popularity)))
 
-    const searchData = Array.isArray(data) ? data.filter((game: NotificationBellProps) => game.title.toLowerCase().includes(search.toLowerCase())) : []
-    // console.log(searchData)
+    const searchData = Array.isArray(data) ? data.filter((game: NotificationProp) => game.title.toLowerCase().includes(search.toLowerCase())) : []
+
     const handleChange = (event: React.FormEvent) => {
         const target = event.target as HTMLInputElement;
         setSearch(target.value);
@@ -25,7 +25,7 @@ export const Search = () => {
             <input type="text" placeholder="Search..." className="input input-bordered w-72" onChange={handleChange} value={search} />
             <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-72">
                 {search.length === 0 || searchData.length === 0 ? <li className="flex">No results found</li> :
-                searchData.map((game: NotificationBellProps) => {
+                searchData.map((game: NotificationProp) => {
                     return (
                         <li key={game.id} className="relative">
                             <div className="flex">

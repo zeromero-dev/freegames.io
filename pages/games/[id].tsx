@@ -24,7 +24,7 @@ const GameInfo = () => {
         <GameDetails
             key={game.id}
             id={game.id}
-            name={game.title}
+            title={game.title}
             image={game.image}
             description={game.description}
             url={game.open_giveaway_url}
