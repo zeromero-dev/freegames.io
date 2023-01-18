@@ -22,27 +22,26 @@ export const fetchNotifcationGames = async (options: Object) => {
 type GameProps = Omit<GameDetails, "instructions" | "status">
 
 
-// The data that comes to server as "undefined" for some reason.
-// Needs fixing
-// export async function getServerSideProps() {
-//   const queryClient = new QueryClient()
+export async function getServerSideProps() {
+  const queryClient = new QueryClient()
 
-//   await queryClient.prefetchQuery(['gameData'], fetchGames)
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//     }
-//   }
-// }
+  await queryClient.prefetchQuery(['gameData'], (async () => await fetchGames(options_popularity)))
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    }
+  }
+}
+
 
 export const Game = () => {
   const { data, error, isLoading } = useQuery(["gameData"], (async () => await fetchGames(options_popularity)))
 
-  if (isLoading) return (<Loader />)
+  // if (isLoading) return (<Loader />)
   error ? <div>Error</div> : null
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 gap-y-8 lg:ml-10 sm:ml-4 mt-5 grid-flow-dense'>
-      {data.map((game: GameProps) => {
+      {data?.map((game: GameProps) => {
         return (
           <GameCard
             key={game.id}
