@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "precommit": "pnpm run lint && pnpm run test"
   },
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.4.2",
